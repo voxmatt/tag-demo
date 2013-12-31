@@ -4,7 +4,8 @@
 
   <meta charset="UTF-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 
   <link rel="shortcut icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
@@ -134,20 +135,23 @@
       var initTop = $('img.img-main').height() + 20;
       $('.comment-viewer').css({'margin-top':initTop + 'px'});
     }
-    $(document).ready(calcTopMargin);
-    $(window).resize(calcTopMargin);
-    $(document).ready(function(){
-      var height = $('.comment-viewer').height() + 100;
+    var commentHeight = function(add){
+      var height = $('.comment-viewer').height() + add;
       $('.comment-viewer').css({'height':height + 'px'});
-    });
+    }
+    $(document).ready(calcTopMargin);
+    $(document).ready(commentHeight(112));
+    $(window).resize(calcTopMargin);
 
     $('.comment-form').submit(function(e){
       var formText = $('.comment-form .form-control').val();
 
       if ( $('.comments li').last().hasClass('me') ){
         $('.comments li:last').find('p:last').after('<p>' + formText + '</p>');
+        commentHeight( $('.comments li:last p:last').height() + 5);
       } else{
         $('.comments').append('<li class="comment me"><div class="avatar"><img src="/img/addison.jpg"/></div><div class="content"><p>' + formText + '</p><time datetime="2013-12-30T20:46">Addison • just now</time></div></li>');
+        commentHeight( $('.comments li:last').height() + 20);
       }
       $('.comment-form .form-control').val('')
       e.preventDefault();
