@@ -136,6 +136,10 @@
     }
     $(document).ready(calcTopMargin);
     $(window).resize(calcTopMargin);
+    $(document).ready(function(){
+      var height = $('.comment-viewer').height() + 100;
+      $('.comment-viewer').css({'height':height + 'px'});
+    });
 
     $('.comment-form').submit(function(e){
       var formText = $('.comment-form .form-control').val();

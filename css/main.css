@@ -62,7 +62,7 @@ a.close{
   position:absolute;
   z-index:10;
   font-size:24px;
-  top:16px;
+  top:5px;
   right:30px;
 }
 
@@ -87,6 +87,9 @@ a.close{
     color: #FFF;
     font-weight: 200;
     letter-spacing: 1px;
+  }
+  a.close{
+    top:16px;
   }
 }
 
