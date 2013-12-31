@@ -1,0 +1,163 @@
+<html>
+<head>
+  <title>Picture</title>
+
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+</head>
+
+<body>
+  <main class="scene">
+    
+    <section class="layer background" data-depth="0.01">
+      <img src="/img/couch.jpg" />
+    </section>
+
+    <section class="layer img-viewer-layer" data-depth="0.07">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 img-viewer">
+          <a href="app-store" class="app-banner" >
+            <img src="/img/app-logo.png" class="app-logo"/>
+            <div class="sell-text-container">
+              <p>
+                Tag is simple, private photo sharing.
+              </p>
+              <p>
+                Get the app claim your pics, and join your friends!
+              </p>
+            </div>
+            <div class="app-store-container">
+              <img src="/img/app_store.png">
+            </div>
+          </a>
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 col-md-2 col-md-offset-1 hidden-xs">
+          <div class="img-info">
+            <p>
+              <label>tagged by </label>
+              <div class="avatar">
+                <img src="img/addison.jpg">
+              </div> 
+              <div class="name">Addison</div>
+              2 hours ago
+            </p>
+            <p>
+              <label>shared with</label>
+              <div class="avatar">
+                <img src="img/matt.jpg">
+              </div>
+              <div class="name">Matt</div>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-md-6 img-viewer">
+          <img src="/img/couch.jpg" class="img-responsive img-main" />
+        </div>
+      </div>
+    </section>
+
+    <section class="layer chat-viewer-layer" data-depth="0.1">
+      <div class="row">
+
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div class="comment-viewer">
+            <ul class="comments">
+              
+              <li class="comment me">
+                <div class="avatar">
+                  <img src="/img/addison.jpg"/>
+                </div>
+                <div class="content">
+                  <p>How awesome was this day!? Cold as hell, but it was so clear and the snow on the beach was just awesome.</p>
+                  <time datetime="2013-12-30T20:09">Addison • 51 min</time>
+                </div>
+              </li>
+
+              <li class="comment them">
+                <div class="avatar">
+                  <img src="/img/matt.jpg"/>
+                </div>
+                <div class="content">
+                  <p>Yeah man, I really like this picture. Amazing shot. What kind of camera is this?</p>
+                  <time datetime="2013-12-30T20:15">Matt • 45 min</time>
+                </div>
+              </li>
+
+              <li class="comment me">
+                <div class="avatar">
+                  <img src="/img/addison.jpg"/>
+                </div>
+                <div class="content">
+                  <p>Actually, just my iPhone.</p>
+                  <time datetime="2013-12-30T20:31">Addison • 29 min</time>
+                </div>
+              </li>
+
+              <li class="comment them">
+                <div class="avatar">
+                  <img src="/img/matt.jpg"/>
+                </div>
+                <div class="content">
+                  <p>Hahaha, really!? That's amazing.</p>
+                  <p>I really need to take more pictures.</p>
+                  <time datetime="2013-12-30T20:46">Matt • 14 min</time>
+                </div>
+              </li>
+            </ul>
+
+            <form class="comment-form">
+              <input class="form-control" placeholder="Write a comment...">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/jquery.parallax.min.js"></script>
+  <script>
+    $('.scene').parallax();
+    var calcTopMargin = function(){
+      var initTop = $('img.img-main').height() + 20;
+      $('.comment-viewer').css({'margin-top':initTop + 'px'});
+    }
+    $(document).ready(calcTopMargin);
+    $(window).resize(calcTopMargin);
+
+    $('.comment-form').submit(function(e){
+      var formText = $('.comment-form .form-control').val();
+
+      if ( $('.comments li').last().hasClass('me') ){
+        $('.comments li:last').find('p:last').after('<p>' + formText + '</p>');
+      } else{
+        $('.comments').append('<li class="comment me"><div class="avatar"><img src="/img/addison.jpg"/></div><div class="content"><p>' + formText + '</p><time datetime="2013-12-30T20:46">Addison • just now</time></div></li>');
+      }
+      $('.comment-form .form-control').val('')
+      e.preventDefault();
+      $('.chat-viewer-layer').animate({
+        scrollTop: $(".comment-form").offset().top
+      }, 1000);
+    });
+
+    $('.close').click(function(e){
+      $(this).remove();
+      $('.app-banner').slideUp();
+      $('.chat-viewer-layer').animate({'margin-top':'0'});
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>

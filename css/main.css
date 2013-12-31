@@ -1,0 +1,287 @@
+.scene{
+  overflow:hidden;
+}
+
+/* Setting up blurred backgrouns */
+.background {
+  background-color:#333;
+  z-index:0;
+}
+.background img{
+  width:120%;
+  position:absolute;
+  top:-10%;
+  left:-10%;
+  height:120%;
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
+  opacity:0.5;
+}
+
+/* App banner */
+.app-banner{
+  margin-top:10px;
+  display: block;
+  position:relative;
+  width: 100%;
+  height: 92px;
+  border-radius: 25px;
+  background-color:#3CB7FD;
+}
+.app-logo-container{
+  width:190px;
+}
+.app-logo{
+  display:none;
+  position:absolute;
+}
+
+.sell-text-container{
+  position:absolute;
+  top:15px;
+  left:20px;
+  margin-right:110px;
+}
+.app-banner p{
+  display:inline;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: 200;
+  margin-bottom:3px;
+}
+.app-store-container img{
+  position: absolute;
+  top: 32;
+  right: 15;
+  height: 30px;
+}
+a.close{
+  position:absolute;
+  z-index:10;
+  font-size:24px;
+  top:16px;
+  right:30px;
+}
+
+@media (min-width: 768px) {  
+  .app-banner{
+    background: url('../img/app-icon2.png') #3CB7FD no-repeat;
+  }
+  .app-store-container img{
+    position: absolute;
+    top: 30;
+    right: 35;
+    height: 35px;
+  }
+  .sell-text-container{
+    top:12px;
+    left:100px;
+    margin-right:140px;
+  }
+  .app-banner p{
+    display:inline-block;
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 200;
+    letter-spacing: 1px;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+  .app-logo{
+    display:inline-block;
+    top:30px;
+    left:85px;
+  }
+  .sell-text-container{
+    top:12px;
+    left:200px;
+    margin-right:140px;
+  }
+}
+
+
+
+/* Primary image on page */
+.img-viewer-layer{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+img.img-main {
+  width:100%;
+  border:1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px #222;
+  margin-top:10px;
+}
+
+/* Image info */
+.img-info{
+  font-size:11px;
+  color:#444;
+  text-align:right;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  padding-right:7px;
+  margin-top:40px;
+  margin-right:20px;
+}
+.img-info .avatar{
+  display:inline-block;
+  float:right;
+  margin-right: -35px;
+}
+.img-info .name{
+  font-size:13px;
+  color:#333;
+}
+.img-info .avatar img{
+  width:20px;
+}
+.img-info label{
+  margin:0;
+  margin-bottom:-15px;
+  font-size:9px;
+  text-transform:uppercase;
+  color:#bbb;
+  font-weight:400;
+}
+.img-info p{
+  margin-bottom:20px;
+}
+
+/* Comments */
+.chat-viewer-layer{
+  margin-top:100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.comment-viewer{
+  background:rgba(0,0,0,0.3);
+  border:1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px #222;
+}
+
+ul.comments{
+  width:100%;
+  margin-top:20px;
+  padding-top:20px;
+  padding-left:0px;
+  font-family: "Helvetica Neue";
+  font-weight:300;
+  font-size: 14px;
+  font-weight: normal;
+}
+li.comment {
+  list-style:none;
+  position:relative;
+  word-wrap: break-word;
+  margin: 0 2% 20px 2%;
+  line-height: 21px;
+}
+
+.comment:before,
+.comment:after {
+  content: " ";
+  display: table;
+}
+.comment:after {
+  clear: both;
+}
+
+.comment .avatar{
+  z-index:2;
+  width:40px;
+  position:absolute;
+}
+.comment .avatar img{
+  width:100%;
+  display:block;
+}
+
+.comment.them .avatar:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border: 5px solid rgba(255,255,255,0.8);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+.comment.me .avatar:after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 5px solid rgba(255,255,255,0.6);
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+.comment .content{
+  z-index:1;
+  position:relative;
+  padding:10px 20px;
+  border-radius:2px;
+  box-shadow:0 1px 3px black;
+}
+
+.comment .content p{
+  margin-bottom:5px;
+}
+
+.me .avatar{
+  bottom:0;
+  right:0;
+  box-shadow:2px 1px 2px black;
+}
+.me .content{
+  background:rgba(255,255,255,0.6);
+  color:black; 
+  float: right;
+  margin-right:40px;
+  margin-left:10%;
+  border-bottom-right-radius:0;
+}
+
+.them .avatar{
+  top:0;
+  left:0;
+}
+.them .content{
+  background:rgba(255,255,255,0.8);
+  color: black;
+  float: left;
+  margin-left:40px;
+  margin-right:10%;
+  border-top-left-radius:0;
+}
+
+.content time{
+  color:#666;
+  font-size:12px;
+}
+
+.comment-form{
+  padding:0 20px;
+}
+.comment-form .form-control{
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color .5s;
+  color:Black;
+}
+.comment-form .form-control:focus{
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.comment-form .form-control::-webkit-input-placeholder {
+  color: black;
+}
+.comment-form .form-control::-moz-placeholder {
+  color: black;
+}
